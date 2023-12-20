@@ -52,8 +52,9 @@ public class WorkServiceImpl implements WorkService {
         if(response.getBody().getSize() > 0) {
             Author author = authorService.findById(authorId);
             for (WorkApiEntry entry : response.getBody().getEntries()) { // Adds works with a for loop.
-                Work work = new Work(entry.getKey(), entry.getTitle(), author);
-                works.add(work);
+                String key = entry.getKey().replace("/works/", ""); // Extracts the key without '/works/'
+                Work work = new Work(key, entry.getTitle(), author); // Creates a new work object.
+                works.add(work); // Adds it to the list.
             }
             workRepository.saveAll(works); // Saves works to the db.
             return mapToListResponse(works);
