@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: author
+  datasource:
+    url: jdbc:mysql://localhost:3306/author?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 985263
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
